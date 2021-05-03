@@ -91,13 +91,13 @@ public class UsersServiceTest {
 
     @Test
     public void whenIsBirthDayWhenBirthDayThenTrue() throws CustomFieldException {
-        boolean isBirthDay = usersService.isBirthDay(usersService.getUsers().get(0), LocalDate.of(1994, 3, 17));
+        boolean isBirthDay = usersService.isBirthDay(usersService.getUsers().get(0), LocalDate.of(2021, 3, 17));
         assertTrue(isBirthDay);
     }
 
     @Test
     public void whenIsBirthDayWhenNotBirthDayThenFalse() throws CustomFieldException {
-        boolean isBirthDay = usersService.isBirthDay(usersService.getUsers().get(0), LocalDate.of(1994, 3, 10));
+        boolean isBirthDay = usersService.isBirthDay(usersService.getUsers().get(0), LocalDate.of(2021, 3, 10));
         assertFalse(isBirthDay);
     }
 
