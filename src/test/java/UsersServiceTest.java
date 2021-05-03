@@ -71,21 +71,21 @@ public class UsersServiceTest {
     @Test
     public void whenIsBirthDayWhenUserIsNullThenThrowCustomFieldException() throws CustomFieldException {
         thrown.expect(CustomFieldException.class);
-        thrown.expectMessage("User of date of birthday is null");
+        thrown.expectMessage("User or date of birthday is null");
         usersService.isBirthDay(null,LocalDate.of(1990, 2, 1));
     }
 
     @Test
     public void whenIsBirthDayWhenUserDateOfBirthIsNullThenThrowCustomFieldException() throws CustomFieldException {
         thrown.expect(CustomFieldException.class);
-        thrown.expectMessage("User of date of birthday is null");
+        thrown.expectMessage("User or date of birthday is null");
         usersService.isBirthDay(usersService.getUsers().get(2),LocalDate.of(2021,5,3));
     }
 
     @Test
     public void whenIsBirthDayWhenLocalDateIsNullThenThrowCustomFieldException() throws CustomFieldException {
         thrown.expect(CustomFieldException.class);
-        thrown.expectMessage("Compare date could nor be null");
+        thrown.expectMessage("Compare date could not be null");
         usersService.isBirthDay(usersService.getUsers().get(0),null);
     }
 
