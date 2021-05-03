@@ -39,9 +39,9 @@ public class UsersService {
 
     public boolean isBirthDay(Users user, LocalDate localDate) throws CustomFieldException {
         if(isNull(user) || isNull(user.getDateOfBirth()))
-            throw new CustomFieldException("User of date of birthday is null");
+            throw new CustomFieldException("User or date of birthday is null");
         if (isNull(localDate))
-            throw new CustomFieldException("Compare date could nor be null");
+            throw new CustomFieldException("Compare date could not be null");
         return user.getDateOfBirth().getDayOfMonth() == localDate.getDayOfMonth()
                 && localDate.getMonth().equals(user.getDateOfBirth().getMonth());
     }
