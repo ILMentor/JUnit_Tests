@@ -25,7 +25,7 @@ public class UsersServiceTest {
         System.out.println("Code executes before each method.");
         Users user1 = new Users("John", LocalDate.of(1994, 3, 17));
         Users user2 = new Users("Alice", LocalDate.of(1970, 4, 17));
-        Users user3 = new Users("Melinda", LocalDate.of(1997, 6, 23));
+        Users user3 = new Users("Melinda", null);
         List<Users> usersList = new ArrayList<>();
         usersList.add(user1);
         usersList.add(user2);
@@ -66,6 +66,39 @@ public class UsersServiceTest {
         thrown.expect(CustomFieldException.class);
         thrown.expectMessage("Date of birth could not be null");
         usersService.createNewUser("Dave", null);
+    }
+
+    @Test
+    public void whenIsBirthDayWhenUserIsNullThenThrowCustomFieldException() throws CustomFieldException {
+        thrown.expect(CustomFieldException.class);
+        thrown.expectMessage("User of date of birthday is null");
+        usersService.isBirthDay(null,LocalDate.of(1990, 2, 1));
+    }
+
+    @Test
+    public void whenIsBirthDayWhenUserDateOfBirthIsNullThenThrowCustomFieldException() throws CustomFieldException {
+        thrown.expect(CustomFieldException.class);
+        thrown.expectMessage("User of date of birthday is null");
+        usersService.isBirthDay(usersService.getUsers().get(2),LocalDate.of(2021,5,3));
+    }
+
+    @Test
+    public void whenIsBirthDayWhenLocalDateIsNullThenThrowCustomFieldException() throws CustomFieldException {
+        thrown.expect(CustomFieldException.class);
+        thrown.expectMessage("Compare date could nor be null");
+        usersService.isBirthDay(usersService.getUsers().get(0),null);
+    }
+
+    @Test
+    public void whenIsBirthDayWhenBirthDayThenTrue() throws CustomFieldException {
+        boolean isBirthDay = usersService.isBirthDay(usersService.getUsers().get(0), LocalDate.of(1994, 3, 17));
+        assertTrue(isBirthDay);
+    }
+
+    @Test
+    public void whenIsBirthDayWhenNotBirthDayThenFalse() throws CustomFieldException {
+        boolean isBirthDay = usersService.isBirthDay(usersService.getUsers().get(0), LocalDate.of(1994, 3, 10));
+        assertFalse(isBirthDay);
     }
 
     @AfterClass
