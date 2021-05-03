@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 
-public class UserService {
+public class UsersService {
 
     private List<Users> users;
 
-    public UserService(List<Users> users) {
+    public UsersService(List<Users> users) {
         this.users = users;
     }
 
